@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
   constructor (config) {
     this._url = config.url;
     this._headers = config.headers;
@@ -86,3 +86,11 @@ export default class Api {
       .then(this._checkResponse);
   }
 } 
+
+export default new Api ({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-30',
+  headers: { 
+    authorization: '8449e18b-a7ee-40b0-b102-1a72c02d892b',
+    'content-type': "application/json"
+  }
+})

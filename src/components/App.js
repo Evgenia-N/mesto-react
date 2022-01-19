@@ -1,4 +1,6 @@
 import React from 'react';
+import Api from '../utils/Api';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -13,6 +15,17 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({name: '', link: ''});
+
+  const [currentUser, setCurrentUser] = React.useState('');
+
+  React.useEffect(() => {
+    Api.getUserInfo()
+      .then((currentUser) => {
+        setCurrentUser(currentUser)
+      })
+      .catch((err) =>
+        console.log(`${err}`))
+  }, []);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -80,33 +93,28 @@ function App() {
   }, []);
 
   return (
-    <div className = "page">
-      <Header />
-      <Main 
-        onEditProfile={handleEditProfileClick}
-        onEditAvatar={handleEditAvatarClick}
-        onAddPlace={handleAddPlaceClick}
-        onCardClick={handleCardClick}
-      />
-      <Footer />
-      <PopupEditProfile
-        isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}
-      />
-      <PopupEditAvatar
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-      />
-      <PopupAddCard
-        isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}
-      />
-      <ImagePopup
-        card={selectedCard}
-        onClose={closeAllPopups}
-      />
-    </div>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        <Header />
+        <Main
+          onEditProfile={handleEditProfileClick}
+          onEditAvatar={handleEditAvatarClick}
+          onAddPlace={handleAddPlaceClick}
+          onCardClick={handleCardClick}
+        />
+        <Footer />
+        <PopupEditProfile
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+        />
+        <PopupEditAvatar
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+        />
+        <PopupAddCard isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
-
 export default App;

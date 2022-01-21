@@ -9,7 +9,6 @@ export const profileJob = document.querySelector(".profile__subtitle");
 export const profilePic = document.querySelector(".profile__pic");
 export const nameInput = popupEditProfileForm.querySelector(".popup__input_type_name");
 export const jobInput = popupEditProfileForm.querySelector(".popup__input_type_about-self");
-
 export const popupAddImage = document.querySelector(".popup_type_add-image");
 export const popupAddImageForm = popupAddImage.querySelector(".popup__form");
 export const popupAddImageOpenBtn = document.querySelector(".profile__add-button");

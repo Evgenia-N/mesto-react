@@ -25,7 +25,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        about: data['about-self']
+        about: data.about
       })
     })
       .then(this._checkResponse);
@@ -50,13 +50,13 @@ class Api {
     .then(this._checkResponse)
   }
 
-  addCard(data) {
+  addCard(name, link) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.place,
-        link: data.link
+        name: name,
+        link: link
       })
     })
     .then(this._checkResponse)

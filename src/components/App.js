@@ -52,18 +52,6 @@ function App() {
     }
   }, []);
 
-  React.useEffect(() => {
-    function handleCloseButtonCLick(evt) {
-      if (evt.target.classList.contains("popup__close-button")) {
-        closeAllPopups();
-      }
-    }
-    document.addEventListener('click', handleCloseButtonCLick);
-    return () => {
-      document.removeEventListener('click', handleCloseButtonCLick);
-    }
-  }, []);
-
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }

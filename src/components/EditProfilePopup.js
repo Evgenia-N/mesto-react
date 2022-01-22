@@ -30,10 +30,36 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   } 
 
   return (
-    <PopupWithForm name='edit-profile' title='Редактировать профиль' buttonText='Сохранить' isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
-      <input className="popup__input popup__input_type_name" id = "name-input" type="text" name="name" placeholder="ФИО" minLength="2" maxLength="40" onChange={handleNameChange} required />
+    <PopupWithForm 
+      name='edit-profile' 
+      title='Редактировать профиль' 
+      buttonText='Сохранить' 
+      isOpen={isOpen} 
+      onClose={onClose} 
+      onSubmit={handleSubmit}>
+      <input 
+        className="popup__input popup__input_type_name" 
+        id="name-input" 
+        type="text" 
+        name="name" 
+        placeholder="ФИО" 
+        minLength="2" 
+        maxLength="40" 
+        value={name || '' }
+        onChange={handleNameChange} 
+        required />
       <span className ="popup__error name-input-error" id="name-input-error"></span>
-      <input className="popup__input popup__input_type_about-self" id = "job-input" type="text" name="about" placeholder="О себе" minLength="2" maxLength="200" onChange={handleDescriptionChange} required />
+      <input 
+        className="popup__input popup__input_type_about-self" 
+        id="job-input" 
+        type="text" 
+        name="about" 
+        placeholder="О себе" 
+        minLength="2" 
+        maxLength="200" 
+        value={description || '' }
+        onChange={handleDescriptionChange} 
+        required />
       <span className ="popup__error job-input-error" id="job-input-error"></span>
     </PopupWithForm>
   );
